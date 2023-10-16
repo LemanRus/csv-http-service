@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework.generics import DestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -25,3 +26,15 @@ class ListFiles(APIView):
             data.append(serialized_file)
         return Response(data=data)
 
+
+class FileDelete(DestroyAPIView):
+    queryset = CSVFile.objects.all()
+    serializer_class = FileListSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({
+            "message": "Deleted successfully"
+        },
+            status=status.HTTP_200_OK)
