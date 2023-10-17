@@ -27,7 +27,7 @@
 * Клонировать репозитоий и перейти в корневую папку:
 
 ```
-git clone git@github.com:LemanRus/csv-http-service.git
+git clone https://github.com/LemanRus/csv-http-service.git
 сd csv-http-service
 ```
 
